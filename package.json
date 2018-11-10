@@ -1,0 +1,19 @@
+{
+  "name": "beta",
+  "version": "1.0.0",
+  "description": "a secret project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/changkaizhao/Beta.git"
+  },
+  "author": "roby",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/changkaizhao/Beta/issues"
+  },
+  "homepage": "https://github.com/changkaizhao/Beta#readme"
+}
