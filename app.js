@@ -13,8 +13,14 @@ serv.listen(2000);
 console.log("Server started.");
 
 var io = require('socket.io')(serv, {});
+var SOCKET_LIST = {}
 
 io.sockets.on('connection', function(socket){
+    socket.id = Math.random();
+    socket.x = 0;
+    socket.y = 0;
+    SOCKET_LIST[socket.id] = socket;
+
     console.log('socket connection');
     socket.on('Happy', function(data){
         console.log('happy because ' +  data.reason);
@@ -25,3 +31,15 @@ io.sockets.on('connection', function(socket){
         msg: 'hello',
     });
 });
+
+setInterval(function(){
+    for (var i in SOCKET_LIST){
+        var socket = SOCKET_LIST[i];
+        socket.x++;
+        socket.y++;
+        socket.emit('newPosition', {
+            x:socket.x,
+            y:socket.y
+        });
+    }
+}, 1000/25);
