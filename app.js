@@ -18,6 +18,7 @@ io.sockets.on('connection', function(socket){
     console.log('socket connection');
     socket.on('Happy', function(data){
         console.log('happy because ' +  data.reason);
+        console.log('My ID is ' + data.id);
     });
 
     socket.emit('serverMsg', {
