@@ -16,7 +16,11 @@ var io = require('socket.io')(serv, {});
 
 io.sockets.on('connection', function(socket){
     console.log('socket connection');
-    socket.on('Happy', function(){
-        console.log('happy');
+    socket.on('Happy', function(data){
+        console.log('happy because ', +  data.reason);
+    });
+
+    socket.emit('serverMsg', {
+        msg: 'hello',
     });
 });
