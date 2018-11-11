@@ -19,9 +19,16 @@ io.sockets.on('connection', function(socket){
     socket.id = Math.random();
     socket.x = 0;
     socket.y = 0;
+    socket.number = "" + Math.floor(10 *Math.random());
     SOCKET_LIST[socket.id] = socket;
 
     console.log('socket connection');
+    
+    socket.on('disconnect', function(){
+        delete SOCKET_LIST[socket.id];
+    });
+    
+    
     socket.on('Happy', function(data){
         console.log('happy because ' +  data.reason);
         console.log('My ID is ' + data.id);
@@ -40,7 +47,8 @@ setInterval(function(){
         socket.y++;
         pack.push({
             x:socket.x,
-            y:socket.y
+            y:socket.y,
+            number:socket.number
         });
     }
     for(var i in SOCKET_LIST){
