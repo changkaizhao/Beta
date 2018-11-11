@@ -33,13 +33,19 @@ io.sockets.on('connection', function(socket){
 });
 
 setInterval(function(){
+    var pack = [];
     for (var i in SOCKET_LIST){
         var socket = SOCKET_LIST[i];
         socket.x++;
         socket.y++;
-        socket.emit('newPosition', {
+        pack.push({
             x:socket.x,
             y:socket.y
         });
     }
+    for(var i in SOCKET_LIST){
+        var socket = SOCKET_LIST[i];
+        socket.emit('newPosition', pack);
+    }
+
 }, 1000/25);
